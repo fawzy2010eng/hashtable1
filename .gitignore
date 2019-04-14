@@ -1,104 +1,96 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+class node:
+    def __init__(self,dataval=None):
+        self.dataval=dataval
+        self.next=None
+class linkedlist:
+    def __init__(self):
+        self.head=None
 
-# C extensions
-*.so
+    def listprint(self):
+        printval = self.head
+        while printval is not None:
+            print(printval.dataval)
+            printval = printval.next
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+    def addtothebegin(self,n):
+        n.next = self.head
+        self.head=n
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+    def insert(self, n):
+        current = self.head
+        while current.next != None:
+            current = current.next
+        current.next=n
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    def getsize(self):
+        size=0
+        while self.head != None:
+            size=size+1
+            self.head=self.head.next
+        return size
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
+    def findNode(self, value):
 
-# Translations
-*.mo
-*.pot
+        curr = self.head
+        while curr:
+            if curr.dataval == value:
+                return True
+            curr = curr.next
+        return False
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
 
-# Flask stuff:
-instance/
-.webassets-cache
 
-# Scrapy stuff:
-.scrapy
+def hashfunc(name):
+    sum=0
+    for i in range (name.__len__()):
+        sum= sum+ord(name[i])
+    return sum
+array=[]
+for i in range(97,123,1):
+    nameofthelist=chr(i)+'_list'
+    nameofthelist=linkedlist()
+    array.append(nameofthelist)
 
-# Sphinx documentation
-docs/_build/
+#create dict of list and index
+dict ={'a_list':'0',
+'b_list':'1',
+'c_list':'2',
+'d_list':'3',
+'e_list':'4',
+'f_list':'5',
+'g_list':'6',
+'h_list':'7',
+'i_list':'8',
+'j_list':'9',
+'k_list':'10',
+'l_list':'11',
+'m_list':'12',
+'n_list':'13',
+'o_list':'14',
+'p_list':'15',
+'q_list':'16',
+'r_list':'17',
+'s_list':'18',
+'t_list':'19',
+'u_list':'20',
+'v_list':'21',
+'w_list':'22',
+'x_list':'23',
+'y_list':'24',
+'z_list':'25'}
+class hashtable:
+    def __init__(self):
+        self.array=array
 
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
+    # add elemnt to the linked list
+    def add(self, element):
+        #get the name of the list
+        nameofthelist=element[0]+'_list'
+        #get the key from the dict which is the linked list
+        nameofthe=int(dict[nameofthelist])
+        #insert the element in the linked list
+        array[nameofthe].addtothebegin(node(hashfunc(element)))
+     def dele(self,elelment):
+         nameofthelist=elelment[0]+'_list'
+         nameofthelist=linkedlist()
+         
